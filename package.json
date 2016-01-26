@@ -1,6 +1,6 @@
 {
   "name": "github-widget-lite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A lite Github widget loader",
   "main": "dist/github-widget.js",
   "scripts": {
