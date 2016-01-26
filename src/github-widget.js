@@ -1,3 +1,21 @@
+document.addEventListener('DOMContentLoaded', function (e) {
+  Array.prototype.forEach.call(document.querySelectorAll('.github-widget'), loadWidget);
+}, false);
+
+!function (root, factory) {
+  if (typeof module === 'object' && module.exports)
+    module.exports = factory();
+  else
+    root.githubWidgets = factory();
+}(typeof window !== 'undefined' ? window : this, function () {
+  return {
+    loadWidget: loadWidget,
+    initJQuery: initJQuery,
+  };
+});
+
+if (typeof jQuery !== 'undefined') initJQuery(jQuery);
+
 /**
  * @desc Transform HTML to avoid XSS but keep HTML entities
  * @param {String} html
@@ -97,17 +115,12 @@ function loadWidget(widget) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function (e) {
-  Array.prototype.forEach.call(document.querySelectorAll('.github-widget'), loadWidget);
-}, false);
-
-!function (root, factory) {
-  if (typeof module === 'object' && module.exports)
-    module.exports = factory();
-  else
-    root.githubWidget = factory();
-}(typeof window !== 'undefined' ? window : this, function () {
-  return {
-    loadWidget: loadWidget,
+// jQuery support
+function initJQuery($) {
+  if ($.fn && !$.fn.githubWidgets) $.fn.githubWidgets = function () {
+    this.each(function (i, el) {
+      loadWidget(el);
+    });
+    return this;
   };
-});
+}
