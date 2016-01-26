@@ -1,0 +1,40 @@
+{
+  "name": "github-widget-lite",
+  "version": "0.1.0",
+  "description": "A lite Github widget loader",
+  "main": "dist/github-widget.js",
+  "scripts": {
+    "build": "gulp build",
+    "clean": "gulp clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gera2ld/github-widget-lite.git"
+  },
+  "keywords": [
+    "github",
+    "widget"
+  ],
+  "author": "Gerald <i@gerald.top>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gera2ld/github-widget-lite/issues"
+  },
+  "homepage": "https://github.com/gera2ld/github-widget-lite#readme",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-css-to-js": "0.0.1",
+    "gulp-less": "^3.0.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-uglify": "^1.5.1",
+    "gulp-wrap": "^0.11.0",
+    "html-minifier": "^1.1.1",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "less-plugin-inline-urls": "^1.1.0",
+    "merge2": "^1.0.0"
+  }
+}
