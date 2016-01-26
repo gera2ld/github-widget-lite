@@ -7,7 +7,7 @@ Github Widget Lite
 
 Based on [JoelSutherland/GitHub-jQuery-Repo-Widget](https://github.com/JoelSutherland/GitHub-jQuery-Repo-Widget).
 
-Rewrite to drop unnecessary dependencies.
+Rewritten to drop unnecessary dependencies.
 
 Installation
 ---
@@ -31,11 +31,14 @@ Usage
 * Load via JavaScript dynamically:
 
   ``` html
-  <script src="dist/github-widget.js"></script>
   <div data-repo="gera2ld/github-widget-lite"></div>
   ```
 
   * Via global
+
+    ``` html
+    <script src="dist/github-widget.js"></script>
+    ```
 
     ``` javascript
     var container = document.querySelector('[data-repo]');
@@ -58,3 +61,7 @@ Usage
 
     $('[data-repo]').githubWidgets();
     ```
+
+Snapshot
+---
+![Snapshot](demo/snapshot.png)
