@@ -101,8 +101,8 @@ function loadWidget(widget) {
       var date = new Date(data.pushed_at);
       pushed_at = (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
     }
-    $(prefix + 'watchers').innerHTML = safeHTML(data.watchers);
-    $(prefix + 'forks').innerHTML = safeHTML(data.forks);
+    $(prefix + 'watchers>span').innerHTML = safeHTML(data.watchers);
+    $(prefix + 'forks>span').innerHTML = safeHTML(data.forks);
     $(prefix + 'description>span').innerHTML = safeHTML(data.description);
     $(prefix + 'updated').innerHTML = 'Latest commit to the <strong>' + data.default_branch + '</strong> branch on ' + pushed_at;
     $(prefix + 'download').href = config.repoUrl + '/zipball/' + data.default_branch;
