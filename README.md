@@ -62,6 +62,6 @@ Usage
     $('[data-repo]').githubWidgets();
     ```
 
-Snapshot
+Demo
 ---
-![Snapshot](demo/snapshot.png)
+[Go](http://gera2ld.github.io/github-widget-lite)
