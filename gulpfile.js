@@ -1,24 +1,21 @@
 const fs = require('fs');
 const gulp = require('gulp');
-const uglify = require('gulp-uglify');
-const less = require('gulp-less');
-const PluginCleanCss = require('less-plugin-clean-css');
-const PluginAutoPrefix = require('less-plugin-autoprefix');
-const PluginInlineURLs = require('less-plugin-inline-urls');
-const cleanCss = new PluginCleanCss({advanced: true});
-const autoPrefix = new PluginAutoPrefix();
-const css2js = require('gulp-css-to-js');
 const merge2 = require('merge2');
-const concat = require('gulp-concat');
-const rename = require('gulp-rename');
 const replace = require('gulp-replace');
-const del = require('del');
-const minify = require('html-minifier').minify;
 const wrap = require('gulp-wrap');
+const less = require('gulp-less');
+const autoprefixer = require('gulp-autoprefixer');
+const cssnano = require('gulp-cssnano');
+const css2js = require('gulp-css2js');
+const concat = require('gulp-concat');
+const minify = require('html-minifier').minify;
 
-gulp.task('clean', () => del(['dist']));
+gulp.task('demo', () => {
+  return gulp.src('scripts/index.html')
+  .pipe(gulp.dest('dist'));
+});
 
-gulp.task('build', () => {
+gulp.task('assets', () => {
   const assets = {
     TEMPLATE: minify(fs.readFileSync('src/template.html', {encoding: 'utf8'}), {
       removeComments: true,
@@ -28,17 +25,16 @@ gulp.task('build', () => {
   };
   return merge2([
     gulp.src('src/*.js')
-    .pipe(replace(/__RPL_(\w+)__/g, (m, g) => JSON.stringify(assets[g] || ''))),
+    .pipe(replace(/__RPL_(\w+)__/g, (m, g) => JSON.stringify(assets[g] || '')))
+    .pipe(wrap('!function(){\n<%=contents%>\n}();')),
     gulp.src('src/*.less')
-    .pipe(less({
-      plugins: [cleanCss, autoPrefix, PluginInlineURLs],
-    }))
-    .pipe(css2js()),
+    .pipe(less())
+    .pipe(autoprefixer())
+    .pipe(cssnano())
+    .pipe(css2js())
   ])
   .pipe(concat('github-widget.js'))
-  .pipe(wrap('!function(){\n<%=contents%>\n}();'))
-  .pipe(gulp.dest('dist'))
-  .pipe(uglify())
-  .pipe(rename({suffix: '.min'}))
   .pipe(gulp.dest('dist'));
 });
+
+gulp.task('build', ['demo', 'assets']);
