@@ -107,10 +107,12 @@ function loadWidget(widget) {
     $(prefix + 'updated').innerHTML = 'Latest commit to the <strong>' + data.default_branch + '</strong> branch on ' + pushed_at;
     $(prefix + 'download').href = config.repoUrl + '/zipball/' + data.default_branch;
     if (data.homepage) {
+      var link = $(prefix + 'link');
       var a = document.createElement('a');
       a.href = data.homepage;
       a.innerHTML = safeHTML(data.homepage);
-      $(prefix + 'link').appendChild(a);
+      link.innerHTML = '';
+      link.appendChild(a);
     }
   });
 }
