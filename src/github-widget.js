@@ -92,8 +92,8 @@ function loadWidget(widget) {
   var repo = $(prefix + 'repo');
   repo.href = repo.title = config.repoUrl;
   repo.innerHTML = safeHTML(config.repoName);
-  $(prefix + 'watchers').href = config.repoUrl + '/watchers';
-  $(prefix + 'forks').href = config.repoUrl + '/network/members';
+  $(prefix + 'stars').href = config.repoUrl + '/stargazers';
+  $(prefix + 'forks').href = config.repoUrl + '/network';
   $(prefix + 'description>a').href = config.repoUrl + '#readme';
   loadData(config.vendorName + '/' + config.repoName, function (data) {
     var pushed_at = 'unknown';
@@ -101,7 +101,7 @@ function loadWidget(widget) {
       var date = new Date(data.pushed_at);
       pushed_at = (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
     }
-    $(prefix + 'watchers>span').innerHTML = safeHTML(data.watchers);
+    $(prefix + 'stars>span').innerHTML = safeHTML(data.stargazers_count);
     $(prefix + 'forks>span').innerHTML = safeHTML(data.forks);
     $(prefix + 'description>span').innerHTML = safeHTML(data.description);
     $(prefix + 'updated').innerHTML = 'Latest commit to the <strong>' + data.default_branch + '</strong> branch on ' + pushed_at;
